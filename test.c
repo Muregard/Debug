@@ -95,16 +95,78 @@ void test2()
 //	return 0;
 //}
 
+//int main()
+//{
+//	int i = 0;
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	//arr数组下标为0-9
+//	for (i = 0;i <= 9;i++)
+//	{
+//		arr[i] = 0;
+//		printf("hehe\n");
+//	}
+//
+//	return 0;
+//}
+
+//预防发生错误
+//通过编码的技巧，减少错误
+
+//模拟实现strcpy
+//strcpy - 字符串拷贝
+#include<string.h>
+
+//初版 - 写的不好
+//void my_strcpy(char* dest, char* src)
+//{
+//	while(*src!='\0')
+//	{
+//		*dest = *src;
+//		src++;
+//		dest++;
+//	}
+//	*dest = *src;
+//}
+
+//第一版改进
+//void my_strcpy(char* dest, char* src)
+//{
+//	while(*src!='\0')
+//	{
+//		*dest++ = *src++;
+//	}
+//	*dest = *src;
+//}
+
+//改进第一版
+void my_strcpy(char* dest, char* src)
+{
+	while (*src != '\0')
+	{
+		*dest++ = *src++;
+	}
+	*dest = *src;
+}
+
+//改进第二版
+void my_strcpy(char* dest, char* src)
+{
+	while (*dest++ = *src++)//赋值语句的判断结果为该值的ASCII值；既拷贝了'\0',又使得循环停止了
+	{
+		;
+	}
+}
+
+
 int main()
 {
-	int i = 0;
-	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
-	//arr数组下标为0-9
-	for (i = 0;i <= 9;i++)
-	{
-		arr[i] = 0;
-		printf("hehe\n");
-	}
+	char arr1[20] = "xxxxxxxxx";
+	char arr2[] = "hello";
+	my_strcpy(arr1, arr2);
 
+
+	//strcpy(arr1, arr2);
+
+	printf("%s\n", arr1);
 	return 0;
 }

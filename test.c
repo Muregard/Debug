@@ -139,34 +139,66 @@ void test2()
 //}
 
 //改进第一版
-void my_strcpy(char* dest, char* src)
-{
-	while (*src != '\0')
-	{
-		*dest++ = *src++;
-	}
-	*dest = *src;
-}
+//void my_strcpy(char* dest, char* src)
+//{
+//	while (*src != '\0')
+//	{
+//		*dest++ = *src++;
+//	}
+//	*dest = *src;
+//}
 
-//改进第二版
-void my_strcpy(char* dest, char* src)
-{
-	while (*dest++ = *src++)//赋值语句的判断结果为该值的ASCII值；既拷贝了'\0',又使得循环停止了
-	{
-		;
-	}
-}
-
+//优化后
+//#include<assert.h>
+//
+//void my_strcpy(char* dest,const char* src)
+//{
+//	assert(src != NULL);//断言源空间起始地址不为空指针
+//	assert(dest != NULL);//断言目标空间的起始地址不为空指针
+//
+//	while (*dest++ = *src++)//赋值语句的判断结果为该值的ASCII值；既拷贝了'\0',又使得循环停止了
+//	{
+//		;
+//	}
+//}
+//
+//
+//int main()
+//{
+//	char arr1[20] = "xxxxxxxxx";
+//	char arr2[] = "hello";
+//	my_strcpy(NULL, arr2);
+//
+//
+//	//strcpy(arr1, arr2);
+//
+//	printf("%s\n", arr1);
+//	return 0;
+//}
 
 int main()
 {
-	char arr1[20] = "xxxxxxxxx";
-	char arr2[] = "hello";
-	my_strcpy(arr1, arr2);
+	//const修饰变量，这个变量就被称为常变量，不能被更改，但是本质上还是变量
+	//
+
+	const int num = 10;
+	//num = 20;//err
+
+	int* const p = &num;
+	int n = 100;
+	//const修饰指针变量时，如果放在*的右边，修饰的是指针变量p，表示指针变量不能被改变
+	//                     但是指针指向的内容是可以修改的
+	*p = 20;//ok
+	//p = &n;//err
 
 
-	//strcpy(arr1, arr2);
+	//const int* p = &num;
+	//int n = 100;
+	////const修饰指针变量时，如果放在*的左边，修饰的是*p，表示指针指向的内容，是不能通过指针来改变的
+	////                     但是指针变量本身是可以修改的
+	//*p = 20;//err
+	//p = &n;//ok
 
-	printf("%s\n", arr1);
+	printf("%d\n", num);
 	return 0;
 }

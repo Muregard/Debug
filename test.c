@@ -26,10 +26,10 @@
 //	return 0;
 //}
 
-void test2()
-{
-	printf("hehe\n");
-}
+//void test2()
+//{
+//	printf("hehe\n");
+//}
 
 //void test1()
 //{
@@ -148,18 +148,51 @@ void test2()
 //	*dest = *src;
 //}
 
+//int main()
+//{
+//	//const修饰变量，这个变量就被称为常变量，不能被更改，但是本质上还是变量
+//	//
+//
+//	const int num = 10;
+//	//num = 20;//err
+//
+//	int* const p = &num;
+//	int n = 100;
+//	//const修饰指针变量时，如果放在*的右边，修饰的是指针变量p，表示指针变量不能被改变
+//	//                     但是指针指向的内容是可以修改的
+//	*p = 20;//ok
+//	//p = &n;//err
+//
+//
+//	//const int* p = &num;
+//	//int n = 100;
+//	////const修饰指针变量时，如果放在*的左边，修饰的是*p，表示指针指向的内容，是不能通过指针来改变的
+//	////                     但是指针变量本身是可以修改的
+//	//*p = 20;//err
+//	//p = &n;//ok
+//
+//	printf("%d\n", num);
+//	return 0;
+//}
+
 //优化后
 //#include<assert.h>
+
+//把src指向的内容拷贝放进dest指向的空间中
+//本质上讲，希望dest指向的内容被修改，src指向的内容不被修改
 //
-//void my_strcpy(char* dest,const char* src)
+//strcpy 这个库函数，返回值是目标空间的起始地址
+//
+//char* my_strcpy(char* dest,const char* src)
 //{
 //	assert(src != NULL);//断言源空间起始地址不为空指针
 //	assert(dest != NULL);//断言目标空间的起始地址不为空指针
-//
+//	char* ret = dest;
 //	while (*dest++ = *src++)//赋值语句的判断结果为该值的ASCII值；既拷贝了'\0',又使得循环停止了
 //	{
-//		;
+//		;//hello的拷贝
 //	}
+//	return ret;//返回目标空间的起始地址
 //}
 //
 //
@@ -167,38 +200,34 @@ void test2()
 //{
 //	char arr1[20] = "xxxxxxxxx";
 //	char arr2[] = "hello";
-//	my_strcpy(NULL, arr2);
-//
-//
+//	
 //	//strcpy(arr1, arr2);
 //
-//	printf("%s\n", arr1);
+//	printf("%s\n", my_strcpy(arr1, arr2));//链式访问
 //	return 0;
 //}
 
+//strlen 是求字符串长度的库函数
+//my_strlen模拟实现该功能
+//1.const
+//2.assert
+#include<assert.h>
+
+int my_strlen(const char* str)
+{       
+	assert(str != NULL);
+	int count = 0;
+	while (*str++ != '\0')
+	{
+		count++;
+	}
+	return count;
+}
+
 int main()
 {
-	//const修饰变量，这个变量就被称为常变量，不能被更改，但是本质上还是变量
-	//
-
-	const int num = 10;
-	//num = 20;//err
-
-	int* const p = &num;
-	int n = 100;
-	//const修饰指针变量时，如果放在*的右边，修饰的是指针变量p，表示指针变量不能被改变
-	//                     但是指针指向的内容是可以修改的
-	*p = 20;//ok
-	//p = &n;//err
-
-
-	//const int* p = &num;
-	//int n = 100;
-	////const修饰指针变量时，如果放在*的左边，修饰的是*p，表示指针指向的内容，是不能通过指针来改变的
-	////                     但是指针变量本身是可以修改的
-	//*p = 20;//err
-	//p = &n;//ok
-
-	printf("%d\n", num);
+	char arr[] = "DUT Richard";
+	printf("%d\n", my_strlen(arr));
 	return 0;
 }
+

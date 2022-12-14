@@ -211,23 +211,63 @@
 //my_strlen模拟实现该功能
 //1.const
 //2.assert
-#include<assert.h>
+//#include<assert.h>
+//
+//int my_strlen(const char* str)
+//{       
+//	assert(str != NULL);
+//	int count = 0;
+//	while (*str++ != '\0')
+//	{
+//		count++;
+//	}
+//	return count;
+//}
+//
+//int main()
+//{
+//	char arr[] = "DUT Richard";
+//	printf("%d\n", my_strlen(arr));
+//	return 0;
+//}
 
-int my_strlen(const char* str)
-{       
-	assert(str != NULL);
+//求二进制数中1的个数
+//存在一定问题，无法计算-1的二进制数中的1的个数
+//int NumberOf1(int n)
+//{
+//	int count = 0;
+//	while (n)
+//	{
+//		if (n % 2 == 1)
+//		{
+//			count++;
+//		}
+//		n /= 2;
+//		
+//	}
+//	return count;
+//}
+
+int NumberOf1(int n)
+{
 	int count = 0;
-	while (*str++ != '\0')
+	int i = 0;
+	for (i = 0;i < 32;i++)
 	{
-		count++;
+		if ((n >> i) & 1 == 1)
+		{
+			count++;
+		}
 	}
 	return count;
 }
 
 int main()
 {
-	char arr[] = "DUT Richard";
-	printf("%d\n", my_strlen(arr));
+	int n = -1;
+	int ret = NumberOf1(n);
+
+	printf("ret=%d\n", ret);
 	return 0;
 }
 
